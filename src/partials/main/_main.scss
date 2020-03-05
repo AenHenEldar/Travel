@@ -1,0 +1,312 @@
+.main__wrapper {
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.main__title-countries {
+    text-align: center;
+    margin-bottom: 46px;
+}
+
+.main__image {
+    position: relative;
+    width: 100%;
+    height: 218px;
+    background-size: cover;
+
+    &::before {
+        content: 'от 118 112 Р';
+        position: absolute;
+        background: #FFD241;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 14px 26px;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+.main__country {
+    display: inline-block;
+    width: 380px;
+    margin-bottom: 50px;
+}
+
+.main__italy {
+    .main__image {
+        background: url('../src/img/png/italy.png') no-repeat center;
+
+        &::before {
+            content: 'от 118 112 Р';
+        }
+    }
+}
+
+.main__iceland {
+    .main__image {
+        background: url('../src/img/png/iceland.png') no-repeat center;
+
+        &::before {
+            content: '140 715 Р';
+        }
+    }
+}
+
+.main__turkey {
+    .main__image {
+        background: url('../src/img/png/turkey.png') no-repeat center;
+
+        &::before {
+            content: '37 302 Р';
+        }
+    }
+}
+
+.main__norway {
+    .main__image {
+        background: url('../src/img/png/norway.png') no-repeat center;
+
+        &::before {
+            content: '145 000 Р';
+        }
+    }
+}
+
+.main__name {
+    font-size: 9px;
+    line-height: 11px;
+    color: #C5B223;
+    margin: 10px 0 0 0;
+}
+
+.main__description {
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+    margin: 7px 0;
+}
+
+.main__cities {
+    font-size: 9px;
+    line-height: 13px;
+    color: #8C8C8C;
+    margin: 15px 0 10px 0;
+}
+
+.main__info {
+    width: 40%;
+    font-size: 9px;
+    line-height: 11px;
+}
+
+.main__bonus {
+    display: inline-block;
+    font-size: 9px;
+    line-height: 11px;
+    color: #FFFFFF;
+    background: #CB0037;
+    border-radius: 3px;
+    padding: 3px 18px 3px 12px;
+    margin: 10px 0;
+}
+
+.main__title-request {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 70px;
+}
+
+.main__flex-elem {
+    width: 780px;
+    margin-bottom: 30px;
+
+    @media(max-width: 758px) {
+        width: 380px;
+    }
+}
+
+.main__container {
+    display: inline-block;
+    width: 380px;
+    margin-bottom: 35px;
+}
+
+.main__about-you {
+    display: inline-block;
+    padding-bottom: 5px;
+    font-size: 10px;
+    line-height: 12px;
+    color: #000000;
+    border-bottom: 2px solid #000;
+}
+
+.main-field {
+    display: block;
+    background: #FFFFFF;
+    border: 1px solid #E7E7E7;
+    border-radius: 3px;
+    width: 100%;
+    padding: 20px 30px;
+}
+
+.label {
+    display: block;
+    font-size: 10px;
+    line-height: 12px;
+    margin-right: 8px;
+}
+
+.main__box {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #E7E7E7;
+    border-radius: 3px;
+    margin: 0 auto;
+
+    .arrow-down {
+        display: none;
+        width: 12px;
+        height: 12px;
+        right: 35%;
+        top: 25%;
+        border-color: #FFD241;
+        border-width: 3px;
+    }
+
+}
+
+.main__container-elem {
+    display: inline-block;
+    align-self: flex-end;
+    cursor: pointer;
+    width: 25%;
+
+    p {
+        text-align: center;
+        font-size: 10px;
+        line-height: 12px;
+        margin-bottom: 9px;
+    }
+
+    &.active .arrow-down {
+        display: block;
+    }
+}
+
+.main__confirmation p {
+    font-size: 10px;
+    line-height: 12px;
+    margin: 0 0 10px 27px;
+}
+
+.main__confirmation {
+    cursor: pointer;
+    position: relative;
+    vertical-align: middle;
+
+    &::before {
+        content: '*';
+        position: absolute;
+        color: #CB0037;
+        top: -5px;
+        left: 280px;
+    }
+
+    &.active {
+        .arrow-down {
+            display: block;
+        }
+        &::before {
+            color: white;
+        }
+    }
+}
+
+.main__flex-elem {
+
+    .main__box {
+        position: absolute;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        top: -2px;
+        border-color: #CB0037;
+    }
+
+    &.active {
+        display: block;
+
+        .main__box {
+            border-color: #E7E7E7;
+        }
+    }
+
+    .main__box .arrow-down {
+        width: 6px;
+        height: 6px;
+        right: 25%;
+        top: 15%;
+        border-width: 1px;
+    }
+}
+
+.main__explanation {
+    color: #C1C1C1;
+}
+
+.main__flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.main__flex-elem {
+
+    .button {
+        width: 280px;
+        border-color: #FFD241;
+        text-align: left;
+        padding-left: 30px;
+    }
+
+    .arrow-right {
+        top: 21px;
+        right: 30px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width: 400px) {
+    .main__country {
+        width: 340px;
+    }
+
+    .main__image {
+        height: 195px;
+    }
+
+    .main__flex-elem {
+        width: 340px;
+    }
+
+    .main__container {
+        width: 340px;
+    }
+}

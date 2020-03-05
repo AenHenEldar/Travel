@@ -1,0 +1,21 @@
+.arrow-container {
+    display: inline-block;
+    position: relative;
+}
+
+.arrow-down, .arrow-right {
+    position: absolute;
+    cursor: pointer;
+    width: 6px;
+    height: 6px;
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    transform: rotate(45deg) skew(-7deg, -7deg);
+    right: 25px;
+    top: 40%;
+}
+
+.arrow-right {
+    transform: rotate(-45deg) skew(-7deg, -7deg);
+}
+
