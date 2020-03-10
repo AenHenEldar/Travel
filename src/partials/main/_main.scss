@@ -141,12 +141,20 @@
 }
 
 .main-field {
+    
     display: block;
     background: #FFFFFF;
     border: 1px solid #E7E7E7;
     border-radius: 3px;
     width: 100%;
     padding: 20px 30px;
+    
+
+    &.active {
+        border-color: #CB0037;
+
+        
+    }
 }
 
 .label {
@@ -154,6 +162,35 @@
     font-size: 10px;
     line-height: 12px;
     margin-right: 8px;
+    position: relative;
+
+    &.active {
+        &::before {
+            position: absolute;
+            font-size: 10px;
+            line-height: 12px;
+            color: #CB0037;
+            left: 0;
+            top: 90px;
+        }
+
+        &[for=name]::before {
+            content: 'Введите имя';
+        }
+
+        &[for=phone]::before {
+            content: 'Введите номер телефона';
+        }
+
+        &[for=where]::before {
+            content: 'Укажите континент или страну';
+            // content: 'Укажите континент, страну или город';
+        }
+
+        &[for=when]::before {
+            content: 'Введите дату в формате yyyy-mm-dd';
+        }
+    }
 }
 
 .main__box {
@@ -218,6 +255,7 @@
         .arrow-down {
             display: block;
         }
+
         &::before {
             color: white;
         }

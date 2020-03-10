@@ -35,96 +35,98 @@ main.main
         .main__title-request
             h1 Заявка на подбор путешествия
 
-        .main__flex
-        
-            .main__flex-elem
-                .main__about-you
-                    p НЕМНОГО О ВАС
-
-            .main__container    
-                label.label(for='name') ИМЯ
-                input.main-field(type="text" id='name')   
-
-            .main__container    
-                label.label(for='phone') ТЕЛЕФОН
-                input.main-field(type="text" id='phone' placeholder='+7___ ___ __ __')   
-
-            .main__flex-elem
-                .main__about-you
-                    p О ПУТЕШЕСТВИИ
-
-            .main__container    
-                label.label(for='where') КУДА И КОГДА ХОТИТЕ ПОЕХАТЬ?
-                input.main-field(type="text" id='where' placeholder='Континент, страна или город')   
-
-            .main__container    
-                label.label(for='when') КОГДА?
-                input.main-field(type="text" id='when' placeholder='Даты или временной  интервал')
-
-
-            .main__container.main__flex
-                .main__container
+        form(method='get')
+            .main__flex
+            
+                .main__flex-elem
                     .main__about-you
-                        p УДОБНЫЙ СПОСОБ СВЯЗИ
+                        p НЕМНОГО О ВАС
+
+                .main__container    
+                    label.label(for='name') ИМЯ
+                    input.main-field(type="text" id='name' )   
+
+                .main__container    
+                    label.label(for='phone') ТЕЛЕФОН
+                    input.main-field(type="text" id='phone' placeholder='+7___ ___ __ __')   
+
+                .main__flex-elem
+                    .main__about-you
+                        p О ПУТЕШЕСТВИИ
+
+                .main__container    
+                    label.label(for='where') КУДА И КОГДА ХОТИТЕ ПОЕХАТЬ?
+                    input.main-field(type="text" id='where' placeholder='Континент или страна')   
+                    //- placeholder='Континент, страна или город'
+
+                .main__container    
+                    label.label(for='when') КОГДА?
+                    input.main-field(type="text" id='when' placeholder='Даты или временной  интервал')
+
 
                 .main__container.main__flex
-                    .main__container-elem
-                        p VIBER
-                        .main__box
-                            .arrow-down
-                    .main__container-elem
-                        p WHATSAPP 
-                        .main__box
-                            .arrow-down
-                    .main__container-elem
-                        p ПОЧТА  
-                        .main__box
-                            .arrow-down
-                    .main__container-elem
-                        p ТЕЛЕФОН
-                        .main__box
-                            .arrow-down
-            .main__container.main__flex        
-                .main__container
-                    .main__about-you
-                        p ОТКУДА УЗНАЛИ О НАС
+                    .main__container
+                        .main__about-you
+                            p УДОБНЫЙ СПОСОБ СВЯЗИ
 
-                .main__container.main__flex
-                    .main__container-elem
-                        p ИНТЕРНЕТ
+                    .main__container.main__flex
+                        .main__container-elem
+                            p VIBER
+                            .main__box
+                                .arrow-down
+                        .main__container-elem
+                            p WHATSAPP 
+                            .main__box
+                                .arrow-down
+                        .main__container-elem
+                            p ПОЧТА  
+                            .main__box
+                                .arrow-down
+                        .main__container-elem
+                            p ТЕЛЕФОН
+                            .main__box
+                                .arrow-down
+                .main__container.main__flex        
+                    .main__container
+                        .main__about-you
+                            p ОТКУДА УЗНАЛИ О НАС
+
+                    .main__container.main__flex
+                        .main__container-elem
+                            p ИНТЕРНЕТ
+                            .main__box
+                                .arrow-down
+                        .main__container-elem
+                            p РЕКОМЕНДОВАЛИ ДРУЗЬЯ    
+                            .main__box
+                                .arrow-down
+                        .main__container-elem
+                            p СОЦ. СЕТИ    
+                            .main__box
+                                .arrow-down 
+                        .main__container-elem
+                            p УЖЕ ЕЗДИЛ    
+                            .main__box
+                                .arrow-down  
+                        
+
+                .main__flex-elem
+                    .main__confirmation
                         .main__box
                             .arrow-down
-                    .main__container-elem
-                        p РЕКОМЕНДОВАЛИ ДРУЗЬЯ    
+                        p Получать свежие предложения по электронной почте.
+                        p.main__explanation Каждую неделю мы делаем для вас обзор лучших экспедиций, статей и лайфхаков для путешественников. Если вдруг вам не понравится, вы сможете отписаться в любой момент.
+
+                .main__flex-elem
+                    .main__confirmation
                         .main__box
                             .arrow-down
-                    .main__container-elem
-                        p СОЦ. СЕТИ    
-                        .main__box
-                            .arrow-down 
-                    .main__container-elem
-                        p УЖЕ ЕЗДИЛ    
-                        .main__box
-                            .arrow-down  
-                    
+                        p С обработкой своих персональных данных согласен. 
+                        p.main__explanation Отправляя заявку я подтверждаю согласие с условиями Пользовательского соглашения
 
-            .main__flex-elem
-                .main__confirmation
-                    .main__box
-                        .arrow-down
-                    p Получать свежие предложения по электронной почте.
-                    p.main__explanation Каждую неделю мы делаем для вас обзор лучших экспедиций, статей и лайфхаков для путешественников. Если вдруг вам не понравится, вы сможете отписаться в любой момент.
-
-            .main__flex-elem
-                .main__confirmation
-                    .main__box
-                        .arrow-down
-                    p С обработкой своих персональных данных согласен. 
-                    p.main__explanation Отправляя заявку я подтверждаю согласие с условиями Пользовательского соглашения
-
-            .main__flex-elem
-                .arrow-container
-                    button.button ОТПРАВИТЬ
-                    .arrow-right
+                .main__flex-elem
+                    .arrow-container
+                        button.button(type='button') ОТПРАВИТЬ
+                        .arrow-right
                     
             
