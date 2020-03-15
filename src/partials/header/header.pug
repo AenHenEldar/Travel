@@ -3,21 +3,15 @@ header.header
         .header__burger
           span
         .header__menu
-
             .header__menu-wrapper
                 .header__menu-top
-
-                    
-
                     ul.header__list
-                    
                         li.header__item
                             a.header__link(href="#1")
                                 .arrow-container
                                     input.field(type="text" placeholder='Страны' readonly)
                                     .arrow-down
                                         span
-
                                     .header__container.header__contries
                                         p Южная Америка
                                         .header__southamerica.header__container-item
@@ -86,9 +80,10 @@ header.header
                         li.header__item
                             a.header__link(href="#2")
                                 .arrow-container
-                                    input.field(type="text" placeholder='Даты' readonly)
+                                    input.field(type="text" id="datepicker" placeholder='Даты' readonly)
                                     .arrow-down
                                         span
+                                    include ../calendar/calendar
                         li.header__item
                             a.header__link(href="#3")
                                 .arrow-container
@@ -114,8 +109,6 @@ header.header
                         li.header__item: a.header__link(href="#8") БЛОГ
 
                 .header__menu-bot
-
                     .header__number p +7 (495) 123-45-67
-
                     button.button ПОДБЕРИТЕ МНЕ ТУР
 

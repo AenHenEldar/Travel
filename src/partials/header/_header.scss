@@ -10,6 +10,13 @@ body.lock {
     .arrow-container {
         display: block;
     }
+
+    .arrow-down,
+    .arrow-top {
+        pointer-events: none;
+    }
+
+
 }
 
 .header__menu {
@@ -51,9 +58,7 @@ body.lock {
     }
 
     /* Track */
-    ::-webkit-scrollbar-track {
-
-    }
+    ::-webkit-scrollbar-track {}
 
     /* Handle */
     ::-webkit-scrollbar-thumb {

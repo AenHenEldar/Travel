@@ -22,6 +22,7 @@ $(document).ready(function () {
 
             $(this).find('.arrow-down, .arrow-top').toggleClass('arrow-top arrow-down');
             $(this).find('.header__container').toggleClass('active');
+            $(this).find('.calendar').toggleClass('active');
             $(this).toggleClass('active');
 
 

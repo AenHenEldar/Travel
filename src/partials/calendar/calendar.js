@@ -1,10 +1,11 @@
 $(document).ready(function () {
 
     let today = new Date(),
-        todayMark,
+        todayItem,
         currentMonth = today.getMonth(),
         currentYear = today.getFullYear(),
         months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентрябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        mark,
         markArrivalYear = currentYear,
         markArrivalMonth = currentMonth,
         markDepartureYear = currentYear,
@@ -15,8 +16,8 @@ $(document).ready(function () {
         markDepartureСolumn,
         markArrivalDate,
         markDepartureDate,
-        markArrival = 'main__calendar__arrival',
-        markDeparture = 'main__calendar__departure',
+        markArrival = 'calendar__arrival',
+        markDeparture = 'calendar__departure',
         markArrivalDay,
         markDepartureDay;
 
@@ -30,7 +31,7 @@ $(document).ready(function () {
         let nextMonth = 1;
         let row = 6;
 
-        $('.main__calendar__item:not(:first-child').remove();
+        $('.calendar__item:not(:first-child').remove();
 
         if (firstDay == 0) {
             firstDay = 7;
@@ -41,8 +42,8 @@ $(document).ready(function () {
 
         for (let i = 2; i <= row; i++) {
             for (let j = 1; j <= 7; j++) {
-                $(`.main__calendar__list:nth-child(${j}`).append('<li class="main__calendar__item"></li>');
-                let item = $(`.main__calendar__list:nth-child(${j}) .main__calendar__item:nth-child(${i})`);
+                $(`.calendar__list:nth-child(${j}`).append('<li class="calendar__item"></li>');
+                let item = $(`.calendar__list:nth-child(${j}) .calendar__item:nth-child(${i})`);
                 item.css('opacity', '0.9');
                 if (i === 2 && j < firstDay) {
                     item.html(String(daysInMonth(month, year) - firstDay + j + 1)).css('opacity', '0.4');
@@ -50,8 +51,9 @@ $(document).ready(function () {
                     item.html(String(nextMonth++)).css('opacity', '0.4');
                 } else {
                     if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                        item.addClass('main__calendar__today');
-                    } // color today's date
+                        item.addClass('calendar__today');
+                        todayItem = item;
+                    }
                     item.html(String(date));
                     date++;
                 }
@@ -63,61 +65,74 @@ $(document).ready(function () {
         if (markArrivalRow) {
             if (markArrivalYear == year) {
                 if (markArrivalMonth == month) {
-                    $(`.main__calendar__list:nth-child(${markArrivalСolumn}) .main__calendar__item:nth-child(${markArrivalRow})`).addClass(markArrival);
+                    $(`.calendar__list:nth-child(${markArrivalСolumn}) .calendar__item:nth-child(${markArrivalRow})`).addClass(markArrival);
                 }
             }
         }
         if (markDepartureRow) {
             if (markDepartureYear == year) {
                 if (markDepartureMonth == month) {
-                    $(`.main__calendar__list:nth-child(${markDepartureСolumn}) .main__calendar__item:nth-child(${markDepartureRow})`).addClass(markDeparture);
+                    $(`.calendar__list:nth-child(${markDepartureСolumn}) .calendar__item:nth-child(${markDepartureRow})`).addClass(markDeparture);
                 }
             }
         }
 
         // set between marks background
 
-        if (markArrivalRow && markDepartureRow) {
+        if (markArrivalRow && markDepartureRow && markArrivalDate != markDepartureDate) {
             let markBetween;
             let item;
             for (let j = 2; j <= row; j++) {
                 for (let i = 1; i <= 7; i++) {
-                    item = $(`.main__calendar__list:nth-child(${i}) .main__calendar__item:nth-child(${j})`)
+                    item = $(`.calendar__list:nth-child(${i}) .calendar__item:nth-child(${j})`)
                     if (item.css('opacity') != '0.4') {
                         markBetween = year * 365 + month * daysInMonth(month, year) + i + j * 7;
                         if (markBetween > markArrivalDate && markBetween < markDepartureDate) {
-                            if (item.hasClass('main__calendar__today')) {
-                                item.removeClass('main__calendar__today');
+                            if (item.hasClass('calendar__today')) {
+                                item.removeClass('calendar__today');
+                                item.addClass('calendar__today-between');
                             }
                             item.addClass('mark-between');
-                            if (row == 7) {
-                                $('.mark-between').addClass('mark-between--small');
-                            }
-
-                            if (markBetween < (markDepartureDate -  j)) {
-                                if (row == 7) {
-                                    $('.mark-between').css('height', '34px').css('margin-bottom', '0');
-                                } else {
-                                    $('.mark-between').css('height', '40px').css('margin-bottom', '0');
-                                }
-                            }
+                            $('.calendar__arrival').addClass('active');
+                            $('.calendar__departure').addClass('active');
                         }
+                    }
+
+                    if (i == 1) {
+                        item.addClass('active-left-round');
+                    }
+                    if (i == 7) {
+                        item.addClass('active-right-round');
                     }
                 }
             }
         }
 
-        if (row == 7) {
-            $('.main__calendar__item').css('line-height', '34px');
-            $('.main__calendar__arrival, .main__calendar__departure, .main__calendar__today').addClass('main__calendar__-small');
+
+        if (row != 7) {
+            $('.calendar__item').css('margin-bottom', '5px');
         }
 
         // click on li element (item)
 
-        $('.main__calendar__item').click(function () {
-            if ($(this).css('opacity') != '0.4') {
+        $('.calendar__item').click(function () {
+            if ($(this).css('opacity') != '0.4' && $(this).index() != 0) {
+                //what is the mark
+                mark = 'calendar__arrival';
+                if (markArrivalRow && !markDepartureRow) {
+                    console.log(1);
+                    mark = markDeparture;
+                } else if (markArrivalRow && markDepartureRow) {
+                    console.log(2);
+                    $('.calendar__item').removeClass(markArrival + ' ' + markDeparture + ' mark-between ' + 'mark-between--small');
+                    mark = markArrival;
+                    markArrivalRow = false;
+                    markDepartureRow = false;
+                }
 
-                $('.main__calendar__item').removeClass('mark-between');
+                $(todayItem).addClass('calendar__today');
+                $('.calendar__item').removeClass('mark-between active-left-round active-right-round active');
+                $('.calendar__today-between').removeClass('calendar__today-between');
 
                 if (markArrival == mark) {
                     markArrivalYear = currentYear;
@@ -134,7 +149,7 @@ $(document).ready(function () {
                 // set mark
 
                 if ($(this).index() != 0) {
-                    $('.main__calendar__item').removeClass(mark);
+                    $('.calendar__item').removeClass(mark);
                     $(this).addClass(mark);
 
                     markArrivalDate = markArrivalYear * 365 + markArrivalMonth * daysInMonth(markArrivalMonth, markArrivalYear) + markArrivalСolumn + markArrivalRow * 7;
@@ -142,55 +157,42 @@ $(document).ready(function () {
 
                     // set between marks background
 
-                    if (markArrivalRow && markDepartureRow) {
-                        let markBetween;
-                        let item;
+                    let item;
 
-                        for (let j = 2; j <= row; j++) {
-                            for (let i = 1; i <= 7; i++) {
-                                item = $(`.main__calendar__list:nth-child(${i}) .main__calendar__item:nth-child(${j})`);
-                                item.removeClass('main__calendar__-small');
-                                if (row == 7) {
-                                    item.css('height', '38px').css('margin-bottom', '-4px');
-                                } else {
-                                    item.css('height', '45px').css('margin-bottom', '-5px');
-                                }
-                                if (item.css('opacity') != '0.4') {
-                                    markBetween = year * 365 + month * daysInMonth(month, year) + i + j * 7;
+                    for (let j = 2; j <= row; j++) {
+                        for (let i = 1; i <= 7; i++) {
+                            item = $(`.calendar__list:nth-child(${i}) .calendar__item:nth-child(${j})`);
 
-                                    if (todayMark == markBetween) {
-                                        item.addClass('main__calendar__today');
+                            if (item.css('opacity') != '0.4') {
+                                markBetween = year * 365 + month * daysInMonth(month, year) + i + j * 7;
+
+                                if (markBetween > markArrivalDate && markBetween < markDepartureDate) {
+                                    if (item.hasClass('calendar__today')) {
+                                        item.removeClass('calendar__today');
+                                        item.addClass('calendar__today-between');
                                     }
-
-                                    if (markBetween > markArrivalDate && markBetween < markDepartureDate) {
-                                        if (item.hasClass('main__calendar__today')) {
-                                            item.removeClass('main__calendar__today');
-                                            todayMark = markBetween;
-                                        }
+                                    if (markArrivalRow && markDepartureRow && markArrivalDate != markDepartureDate) {
                                         item.addClass('mark-between');
-
-                                        if (markDepartureRow > j) {
-                                            if (row == 7) {
-                                                $('.mark-between').css('height', '34px').css('margin-bottom', '0');
-                                            } else {
-                                                $('.mark-between').css('height', '40px').css('margin-bottom', '0');
-                                            }
-                                        }
+                                        $('.calendar__arrival').addClass('active');
+                                        $('.calendar__departure').addClass('active');
+                                    }
+                                    if (i == 1) {
+                                        item.addClass('active-left-round');
+                                    }
+                                    if (i == 7) {
+                                        item.addClass('active-right-round');
                                     }
 
                                 }
+
                             }
                         }
-                    }
-
-                    if (row == 7) {
-                        $('.main__calendar__arrival, .main__calendar__departure, .main__calendar__today').addClass('main__calendar__-small');
                     }
                 }
 
             }
 
-            mark == 'main__calendar__arrival' ? markArrivalDay = $('.main__calendar__arrival').html() : markDepartureDay = $('.main__calendar__departure').html();
+            mark == 'calendar__arrival' ? markArrivalDay = $('.calendar__arrival').html() : markDepartureDay = $('.calendar__departure').html();
 
         });
 
@@ -201,27 +203,27 @@ $(document).ready(function () {
 
     // current month and year
 
-    $('.main__calendar__header h2').html(months[today.getMonth()] + ' ' + today.getFullYear());
+    $('.calendar__header h2').html(months[today.getMonth()] + ' ' + today.getFullYear());
 
     // click on arrow to change page of calendar
 
-    $('.arrow-right').click(function () {
+    $('.arrow-right').parent().click(function () {
         ++currentMonth;
         if (currentMonth >= 12) {
             currentMonth = 0;
             ++currentYear;
         }
-        $('.main__calendar__header h2').html(months[currentMonth] + ' ' + currentYear);
+        $('.calendar__header h2').html(months[currentMonth] + ' ' + currentYear);
         showCalendar(currentMonth, currentYear);
     })
 
-    $('.arrow-left').click(function () {
+    $('.arrow-left').parent().click(function () {
         --currentMonth;
         if (currentMonth <= -1) {
             currentMonth = 11;
             --currentYear;
         }
-        $('.main__calendar__header h2').html(months[currentMonth] + ' ' + currentYear);
+        $('.calendar__header h2').html(months[currentMonth] + ' ' + currentYear);
         showCalendar(currentMonth, currentYear);
     })
 

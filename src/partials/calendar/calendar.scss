@@ -1,18 +1,46 @@
 .calendar {
+    cursor: auto;
     position: absolute;
-    display: block;
-    top: 50%;
+    display: none;
+    left: -7.15%;
+    top: 42%;
     width: 320px;
     height: 369px;
     background: #FFFFFF;
-    border: 1px solid rgba(31, 32, 65, 0.25);
-    box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
-    border-radius: 4px;
+    border-bottom-right-radius: 29.5px;
+    border-bottom-left-radius: 29.5px;
     z-index: 7;
+    letter-spacing: normal;
+
+    &.active {
+        display: block;
+    }
+
+    .arrow-container {
+        cursor: pointer;
+        width: 37px;
+        height: 37px;
+    }
+
+    h2 {
+        margin-top: 10px;
+    }
+
+    .arrow-right {
+        right: 15px;
+        top: 15px;
+    }
+
+    .arrow-left {
+        left: 15px;
+        top: 15px;
+    }
+
+    transform: scale(0.875);
 }
 
 .calendar__wrapper {
-    margin: 20px;
+    margin: 0 20px 20px 20px;
 }
 
 .calendar__header,
@@ -21,66 +49,131 @@
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
+    justify-content: space-around;
+    
+}
+
+.calendar__header {
     justify-content: space-between;
 }
 
+.calendar__footer p {
+    text-align: center;
+    width: 229px;
+    font-size: 12px;
+    line-height: 14px;
+    color: #000000;
+}
+
 .calendar__main {
-    justify-content: space-around;
-    margin: 30px 0 20px 0;
+    justify-content: center;
+    margin: 0 0 45px 0;
     width: 279.39px;
     height: 240px;
 }
 
 .calendar__item {
     font-size: 12px;
-    line-height: 40px;
-    align-items: center;
-    text-align: center;
+    padding: 8.8px;
     cursor: pointer;
-    padding: 0 11.76px;
+    width: 38px;
+    height: 38px;
 }
 
 .calendar__item:first-child {
     font-weight: bold;
     font-size: 12px;
-    color: #BC9CFF;
 }
 
 .calendar__today,
 .calendar__arrival,
 .calendar__departure {
-    background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    padding-top: 2px;
-    margin: 0 -3.5px -5px -3.5px;
-    transform: translateY(-2px);
-    font-weight: bold;
-    color: #FFFFFF;
-}
-
-.calendar__-small {
     width: 38px;
     height: 38px;
-    margin: 0 0 -4px 0;
+    font-weight: bold;
+    color: #FFFFFF;
+    z-index: 20;
 }
 
-.calendar__arrival,
+.calendar__today {
+    background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
+    border-radius: 50%;
+}
+
+.calendar__arrival {
+    position: relative;
+
+    &.active::before {
+        content: '';
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        background: rgb(240, 240, 240);
+        z-index: -2;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        background: #FFD241;
+        border-radius: 50%;
+        z-index: -1;
+    }
+}
+
 .calendar__departure {
-    background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+    position: relative;
+
+    &.active::before {
+        content: '';
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgb(240, 240, 240);
+        z-index: -2;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: #FFD241;
+        border-radius: 50%;
+        z-index: -1;
+    }
+}
+
+.calendar__today-between {
+    color: #6FCF97;
 }
 
 .mark-between {
-    background: linear-gradient(180deg, rgba(188, 156, 255, 0.3) 0%, rgba(139, 164, 249, 0.4) 100%);
-    transform: translateY(-2px);
-    height: 45px;
-    padding-top: 2px;
-    margin-bottom: -5px;
+    background: rgb(240, 240, 240);
+    width: 38px;
+    height: 38px;
+
+    &.active-left-round {
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+    }
+
+    &.active-right-round {
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+    }
 }
 
-.mark-between--small {
-    height: 38px;
-    padding-top: 3px;
-    margin-bottom: -4px;
+.calendar__item-background {
+    background: linear-gradient(60deg,rgb(255,0,0) 63%, transparent 63%) 50% 50% / 8em 8em;
 }

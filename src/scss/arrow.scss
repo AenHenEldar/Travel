@@ -3,7 +3,7 @@
     position: relative;
 }
 
-.arrow-down, .arrow-right, .arrow-top {
+.arrow-down, .arrow-right, .arrow-top, .arrow-left {
     position: absolute;
     cursor: pointer;
     width: 6px;
@@ -17,6 +17,10 @@
 
 .arrow-right {
     transform: rotate(-45deg) skew(-7deg, -7deg);
+}
+
+.arrow-left {
+    transform: rotate(135deg) skew(-7deg, -7deg);
 }
 
 .arrow-top {
